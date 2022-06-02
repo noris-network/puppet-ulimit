@@ -89,6 +89,23 @@ class ulimit::params {
             'ulimit_value'    => 'unlimited',
           },
         }
+      } elsif $::operatingsystemmajrelease == '9' {
+        $default_ulimits = {
+          'nproc_user_defaults' => {
+            'priority'          => 20,
+            'ulimit_domain'     => '*',
+            'ulimit_item'       => 'nproc',
+            'ulimit_type'       => 'soft',
+            'ulimit_value'      => '31547',
+          },
+          'nproc_root_defaults' => {
+            'priority'        => 20,
+            'ulimit_domain'   => 'root',
+            'ulimit_item'     => 'nproc',
+            'ulimit_type'     => 'soft',
+            'ulimit_value'    => 'unlimited',
+          },
+        }
       } else {
         # if some other release then don't risk destroying default config
         fail("Unsupported operatingsystemmajrelease: ${::operatingsystemmajrelease}")
