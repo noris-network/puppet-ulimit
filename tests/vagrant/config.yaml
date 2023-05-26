@@ -1,3 +1,4 @@
+--- {}
 # -*- mode: yaml; -*-
 # Time-stamp: <Mon 2017-08-21 23:15 svarrette>
 ################################################################################
@@ -6,7 +7,7 @@
 # define additional VMs (agents) to deploy upon vagrant up (in addition to the
 # puppet master 'master')
 
-#___________________________________________
+# ___________________________________________
 # Complete / re-define the default boxes below
 # Format:
 #   :<os><version>: <username>/<box> # see https://vagrantcloud.com
@@ -17,7 +18,7 @@
 #   :debian8:     'debian/contrib-jessie64',
 #   :ubuntu14:    'ubuntu/trusty64'
 
-#_________________
+# _________________
 # Default settings
 # :defaults:
 #   :os: :centos7         # Default OS from the above box definition
@@ -25,7 +26,7 @@
 #   :vcpus: 1             # Default number of virtual CPUs
 #   :vbguest_auto_update: 1  # check/update box guest additions
 
-#____________________
+# ____________________
 # Network settings
 # :network:
 #   :domain: 'vagrant.dev'      # network domain to use
@@ -33,7 +34,7 @@
 #   :ip_offset: 10
 #   # client / VMs defined below will start on xx.xx.xx.<ip_offset>
 
-#___________________________________________________________
+# ___________________________________________________________
 # VMs / Vagrant boxes to define apart from the puppet master
 # Format:
 # <name>:
