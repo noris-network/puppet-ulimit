@@ -31,12 +31,12 @@ class ulimit::params {
   $use_default_ulimits = true
 
   # ulimit defaults
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'RedHat','CentOS','Scientific': {
-      if $::operatingsystemmajrelease == '5' {
+      if $facts['os']['release']['major'] == '5' {
         # pam package on EL5 doesn't create anything
         $default_ulimits = {}
-      } elsif $::operatingsystemmajrelease == '6'  {
+      } elsif $facts['os']['release']['major'] == '6'  {
         # pam package on EL6 creates 90-nproc.conf
         $default_ulimits = {
           'nproc_user_defaults' => {
@@ -54,7 +54,7 @@ class ulimit::params {
             'ulimit_value'      => 'unlimited',
           },
         }
-      } elsif $::operatingsystemmajrelease == '7' {
+      } elsif $facts['os']['release']['major'] == '7' {
         # pam package on EL7 creates 20-nproc.conf
         $default_ulimits = {
           'nproc_user_defaults' => {
@@ -72,7 +72,7 @@ class ulimit::params {
             'ulimit_value'      => 'unlimited',
           },
         }
-      } elsif $::operatingsystemmajrelease == '8' {
+      } elsif $facts['os']['release']['major'] == '8' {
         $default_ulimits = {
           'nproc_user_defaults' => {
             'priority'          => 20,
@@ -89,7 +89,7 @@ class ulimit::params {
             'ulimit_value'    => 'unlimited',
           },
         }
-      } elsif $::operatingsystemmajrelease == '9' {
+      } elsif $facts['os']['release']['major'] == '9' {
         $default_ulimits = {
           'nproc_user_defaults' => {
             'priority'          => 20,
@@ -108,7 +108,7 @@ class ulimit::params {
         }
       } else {
         # if some other release then don't risk destroying default config
-        fail("Unsupported operatingsystemmajrelease: ${::operatingsystemmajrelease}")
+        fail("Unsupported operatingsystemmajrelease: ${::facts['os']['release']['major']}")
       }
     } default: {
       $default_ulimits = {}
